@@ -101182,8 +101182,7 @@ export const getProfessorsByCategory = (category: string) => {
     'citations': 'citations',
     'i10-index': 'i10Index',
     'publications': 'publications',
-    'iits': 'institution',
-    'non-iits': 'institution'
+    'iits': 'id',
   };
   
   const key = categoryMappings[category.toLowerCase()];
@@ -101194,13 +101193,29 @@ export const getProfessorsByCategory = (category: string) => {
     return professors
       .filter(prof => {
         const institution = prof.institution.toLowerCase();
-        return /\biit\b|indian institute of technology/i.test(institution);
+        return (
+          institution.includes('iit ') || 
+          institution.includes('indian institute of technology')
+        );
       })
       .sort((a, b) => b.citations - a.citations);
   }
+  
+  if (category.toLowerCase() === 'non-iits') {
+    return professors
+      .filter(prof => {
+        const institution = prof.id.toLowerCase();
+        return !(
+          institution.includes('iit ') || 
+          institution.includes('indian institute of technology')
+        );
+      })
+      .sort((a, b) => b.citations - a.citations);
+  }
+  
+  return professors
+    .sort((a, b) => (b[key] as number) - (a[key] as number));
 };
-
-
 
 export const getAllProfessorsByDepartment = (departmentId: string) => {
   const baseProfessors = professors.filter(prof => prof.department === departmentId);
