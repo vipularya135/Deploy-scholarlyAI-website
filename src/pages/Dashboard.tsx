@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
@@ -135,7 +134,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
       {/* Global Background Image */}
       <div 
-        className="fixed inset-0 bg-cover bg-center z-0 opacity-15" 
+        className="fixed inset-0 bg-cover bg-center z-0 opacity-15 brightness-95" 
         style={{ backgroundImage: `url('https://static.vecteezy.com/system/resources/thumbnails/006/817/039/small_2x/educational-equipment-boards-and-books-education-concept-with-copy-space-photo.jpg')` }}
       ></div>
       
